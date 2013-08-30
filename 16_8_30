@@ -1,0 +1,31 @@
+You are given an array that contains integers. The integers content is such that every integer occurs 3 times in that array leaving one integer that appears only once. 
+Fastest way to find that single integer 
+-- using memory. 
+-- not using any external memory. 
+
+eg: [2,1,4,5,1,4,2,2,4,1]
+
+
+int sign;
+for(int a : arr){
+   int k=0;
+   if(a < 0) {
+   sign+=-1;
+   a = -a;}
+   else sign++;
+   while(a!=0)
+   {
+      list[k] += a &0x1;
+      a>>1;
+      k++;
+   }
+}
+int res = 0;
+for(int k = 31 ; k>=0 ; k++)
+{
+  res<<1;
+  if(list[k] %3 == 1)
+    res = res | 1;
+}
+if(sign%3!=0) res = -rse;
+return res;
