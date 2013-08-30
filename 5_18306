@@ -1,0 +1,28 @@
+http://www.careercup.com/question?id=12697664
+
+Given (i) a non-empty binary search tree with double values (e.g. 3.5) in each node and (ii) a key value K 
+
+Write a method to find the closest value to K.
+
+
+
+double find(Tree node ,double val)
+{
+  double big = node.val;
+  double small = node.val;
+  while(node !=null)
+  {
+    if(val > node.val){
+      small = node.val;
+      node = node.right;
+    }
+    else
+    {
+      big = node.val;
+      node = node.left;
+    }
+  }
+  double tem = (big + small) /2 - val;
+  if(tem>0) return small;
+  return big;
+}
