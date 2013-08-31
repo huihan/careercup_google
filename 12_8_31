@@ -1,0 +1,16 @@
+First greater number in an array. Given a large array of positive 
+integers, for an arbitrary integer A, we want to know the first integer in 
+the array which is greater than or equal A . O(logn) solution required 
+ex [2, 10,5,6,80] 
+input : 6 output : 10 
+input :20 output : 80
+
+- nim on January 24, 2012 in United States Report Du
+
+I think the question should be: you can do a pre-process, and after than, every search time is O(log n). 
+
+My solution is remove some un-usefull value (2,3,1,6,5,4) = > (2,3,,6,,) , because 1< 3, and 5,4<6. and then put the rest value in a binary search tree with their order number. 
+
+After the pre-process, the following search should be O(log n).
+
+- flybug on March 19, 2012 | Flag
