@@ -1,0 +1,44 @@
+http://www.careercup.com/question?id=14360665
+Given two strings .Print all the interleavings of the two strings. 
+Interleaving means that the if B comes after A .It should also come after A in the interleaved string. 
+ex- 
+AB and CD 
+ABCD 
+ACBD 
+ACDB 
+CABD 
+CADB 
+CDAB
+
+
+public class Solution{
+  ArrayList<String> res;
+  public ArrayList<String> interLeave( String str1 , String str2){
+      StringBuffer buf = new StringBuffer();
+      buf.append(str1);
+      buf.append(str2);
+      res = new ArrayList<String>();
+      solve( str1 ,0, str2,0 , buf    );
+      return res;
+  }
+  
+  public void solve(String str1 , int p , String str2 , int q , StringBuffer buf )
+  {
+    int len1 = str1.length();
+    int len2 = str2.length();
+    if(p == len1 -1 && q == len2 -1){
+      res.add(buf.toString());
+      return ;
+    }
+    if(p != len1 -1){
+      buf.setCharAt(p+q+1 , str1.charAt(p) );
+      solve(str1 , 1+p, str2,q , buf    );
+    }
+    
+    if(q != len2 -1){
+      buf.setCharAt(p+q+1 , str2.charAt(q) );
+      solve(str1 , p, str2,1+q , buf    );
+    }
+  }
+  
+}
