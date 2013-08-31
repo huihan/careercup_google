@@ -1,0 +1,23 @@
+http://www.careercup.com/question?id=8215639
+google-interview-questions0
+of 0 votes
+52 
+Answers
+An array of size n+1 has integers only from 1 to n. The integers 1 to n can be present 0 or more times in the array. Find the first repeating element in the array. 
+Restrictions: O(n) algo required. Cannot use extra space(not even O(1)).
+
+- AL on March 27, 2011 Report Duplicate | Flag 
+
+public class Solution{
+  public int firstRepeat(int[] arr){
+    int len = arr.length;
+    int n = len -1;
+    for(int i = 0 ; i < len ; i++)
+    {
+      if(Math.abs(arr[i]) <1 || Math.abs(arr[i])> n) return -1;
+      if(arr[Math.abs(arr[i])] < 0 ) return Math.abs(arr[i]);
+      arr[Math.abs(arr[i])] = -arr[Math.abs(arr[i])];
+    }
+    return -1;
+  }
+}
