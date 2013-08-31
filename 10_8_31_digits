@@ -1,0 +1,25 @@
+http://www.careercup.com/question?id=7736681
+How to find a number of 10 digits (non repeated digits) which is a perfect square? perfect square examples: 9 (3x3) 16 (4x4) 25(5x) etc. Ten digit number example 1,234,567,890
+class G214
+{
+	public static void main(String[] args)
+	{
+		System.out.println("firstPerfectSquare10digits: " + firstPerfectSquare10digits());
+	}
+
+	public static long firstPerfectSquare10digits()
+	{
+		for (long i = 31991; i <= 99380; i++)
+		{
+			boolean[] used = new boolean[10];
+			for (char c : ((i * i) + "").toCharArray())
+			{
+				used[c - '0'] = true;
+			}
+			boolean ok = true;
+			for (boolean b : used) if (!b) {ok = false; break;}
+			if (ok) {return (i * i);}
+		}
+		return (-1);
+	}
+}
