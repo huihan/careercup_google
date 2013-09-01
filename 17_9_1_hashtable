@@ -1,0 +1,47 @@
+http://www.careercup.com/question?id=9786128
+
+
+Implement a stack that pops out the most
+frequently added item. Stack supports 3 functions 
+- push, pop,and top. Give complexity of each functions in your implementation.
+Solution constant time for all operations (using hashmaps): 
+It basicly uses 2 hashes. One mapping element -> count and other mapping count -> stack of elements
+public class FrequencyStack<T> {
+	private final Map<T, Integer> countMap = new HashMap<T, Integer>();
+	private final Map<Integer, Set<T>> stackMap = new HashMap<Integer, Set<T>>();
+	private int maxCount = 0;
+	public void push(T o) {
+		Integer c = countMap.get(o);
+		if (c == null) {
+			countMap.put(o, c = 1);
+		} else {
+			countMap.put(o, ++c);
+		}
+		Set<T> set = stackMap.get(c);
+		if (set == null)
+			stackMap.put(c, set = new LinkedHashSet<T>());
+		set.add(o);
+		if (c > maxCount)
+			maxCount = c;
+	}	
+	public T pop() {
+		if (maxCount == 0)
+			return null;
+		Set<T> set = stackMap.get(maxCount);
+		T o = set.iterator().next();
+		set.remove(o);
+		if (maxCount == 1) {
+			countMap.remove(o);
+		}
+		if (set.size() == 0) {
+			stackMap.remove(maxCount);
+			--maxCount;
+		}
+		return o;
+	}	
+	public T top() {
+		if (maxCount == 0) 
+			return null;
+		return stackMap.get(maxCount).iterator().next();
+	}	
+}
