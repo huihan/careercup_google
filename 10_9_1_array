@@ -1,0 +1,12 @@
+http://www.careercup.com/question?id=13126680
+
+You are at a political convention with n delegates, each one a member of exactly one political 
+party. It is impossible to tell which political party any delegate belongs to; in particular, you will 
+be summarily ejected from the convention if you ask. However, you can determine whether any 
+two delegates belong to the same party or not by introducing them to each other—members of the 
+same party always greet each other with smiles and friendly handshakes; members of different 
+parties always greet each other with angry stares and insults. 
+(a) Suppose a majority (more than half) of the delegates are from the same political party. 
+Describe an efficient algorithm that identifies a member (anymember) of the majority party.
+
+- rohit_dayal on March 25, 
