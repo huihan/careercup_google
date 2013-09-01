@@ -1,0 +1,14 @@
+http://www.careercup.com/question?id=14711684
+Write the code to find lexicographic minimum in a 
+circular array, e.g. for the array 
+BCABDADAB, the lexicographic mininum is ABBCABDAD
+
+
+
+Here is a O(n) solution : 
+We concat the string twice, then browse the string from left to right, 
+keeping the the start position of the current answer seen so far. 
+When we see a letter that would possibly be the start pos of a new answer, we do 
+not update it yet, instead we keep an offset that defines the size of the prefix 
+that has been checked for comparison of the current best answer and the possible 
+new answer. 
