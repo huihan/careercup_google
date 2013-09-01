@@ -1,0 +1,7 @@
+http://www.careercup.com/question?id=12417680
+
+You have a circular track containing fuel pits at irregular intervals.
+The total amount of fuel available from all the pits together is just sufficient to travel round the 
+track and finish where you started. Given the the circuit perimeter, list of each fuel pit location
+and the amount of fuel they contain, 
+find the optimal start point on the track such that you never run out of fuel and complete circuit.
