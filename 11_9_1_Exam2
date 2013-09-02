@@ -1,0 +1,46 @@
+To easy DP
+http://www.careercup.com/question?id=17850664
+Given N dices.Each dice has A faces.That
+means each dice has numbers
+from 1 to A.Given Sum S,Find the number of
+ways to make the sum S if dices are rolled together.
+
+
+http://www.careercup.com/question?id=17221689
+
+Given a string.Find the longest substring in 
+it such that the substring contains only 2 unique 
+characters.Ex- aabbcbbbadef Ans-bbcbbb
+
+public class Solution{
+  public String findLongest(String str){
+    int len = str.length();
+    unit first = new unit();
+    unit second = new unit();
+    
+    while()
+    for(int i = 0 ; i < len ; i++){
+      if(  )
+    }
+    
+  }
+}
+
+public class unit{
+  int num;
+  int val;
+  int index;
+  public int setFirst(String str){
+    int k = 1 ;
+    this.val = str.charAt(0);
+    while(k < str.length()){
+      if(str.charAt(k) == val){
+        k++;
+        continue;
+      }
+      else
+       break;
+    }
+    return k;
+  }
+}
