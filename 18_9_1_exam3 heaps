@@ -8,15 +8,50 @@ same question, but the input is an endless stream of integers, and we want to fi
 
 public class Solution{
   
-  int min ;
+  int mid ;
   PriorityQueue<Integer> left;
   PriorityQueue<Integer> right;
   
-  public Solution(){
+  public Solution( int a , int b  ){
     left = new PriorityQueue<Integer>(11, Collections.reversOrder() );
-    
+    right = new PriorityQueue<Integer>( ); 
+    left.offer(Math.min(a,b));
+    right.offer(Math.max(a,b));
+    mid = (a+b)/2;
   }
-  public input(int a){
-  
+  public void input(int a){
+    if( left.size() == right.size() ){
+      if(a <= mid){
+        left.offer(a);
+        mid = left.peek();
+      }
+      else
+      {
+        right.offer(a);
+        mid = right.peek();
+      }
+    }
+    else if(left.size() < right.size())
+    {
+      if(a<=mid){
+        left.offer(a);
+      }
+      else{
+        left.offer(right.poll());
+        right.offer(a);
+      }
+      mid = (left.peek() +right.peek() )/2;
+    }
+    else if(left.size() > right.size())
+    {
+      if(a> mid){
+        right.offer(a);
+      }
+      else{
+        right.offer(left.poll());
+        left.offer(a);
+      }
+      mid = (left.peek() +right.peek() )/2;
+    }
   }
 }
