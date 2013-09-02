@@ -1,0 +1,22 @@
+http://www.careercup.com/question?id=15417986
+
+Write a function that gets a billion integers. How can you find the midian in most efficient way (time)? 
+
+same question, but the input is an endless stream of integers, and we want to find the current median.
+
+- adam2008 on February 16, 2013 in United S
+
+public class Solution{
+  
+  int min ;
+  PriorityQueue<Integer> left;
+  PriorityQueue<Integer> right;
+  
+  public Solution(){
+    left = new PriorityQueue<Integer>(11, Collections.reversOrder() );
+    
+  }
+  public input(int a){
+  
+  }
+}
