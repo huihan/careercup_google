@@ -1,0 +1,61 @@
+http://www.careercup.com/question?id=10467922
+Rank a list without sorting it. 
+List : [6, 3, 9] 
+Rank : [1, 0, 2] 
+
+algo & then code it efficiently
+
+
+Using Radix sort on the value and the rank of each element, O(n) seems to be possible if we assume fixed (4 byte) int data type. For arbitrary length data type, this claim is invalid. It's obvious no comparison based approach can get an O(n) solution here. 
+
+A work through example to demonstrate the ranking computation.
+
+
+A = [12, 2, 6, 14, 5, 9, 11]
+
+consider rightmost bit LSB1
+12, 2, 6, 14 => LSB1=0, so each with rank = 0
+5, 9, 11 => LSB1=1, so each gets rank = 4 (size of element with LSB1=0)
+so, after processing rightmost bit,
+B = [0, 0, 0, 0, 4, 4, 4]
+
+Next, consider 2nd rightmost bit LSB2
+12, 5, 9 = > LSB2=0
+   use radix sort on the rank of these elements
+   current rank of 12 is 0, so it remains 0
+   current rank of 5,9 is 4, so both rank is assigned 1
+2, 6, 14, 11 => LSB2 = 1
+   use radix sort on the rank of these elements
+   current rank of 2, 6, 14 is 0, so each assigned to rank 3
+   current rank of 11 is 4, so rank is assigned 6
+so, after processing 2nd rightmost bit,
+B = [0, 3, 3, 3, 1, 1, 6]
+
+Next, consider 3nd rightmost bit LSB3
+2, 9, 11 => LSB3 = 0
+   use radix sort on the rank of these elements
+   current rank of  9 is 1, so assigned to rank 0
+   current rank of  2 is 3, so assigned to rank 1
+   current rank of 11 is 6, so assigned to rank 2
+12, 6, 14, 5 => LSB3 = 1
+   use radix sort on the rank of these elements
+   current rank of 12 is 0, so assigned to rank 3
+   current rank of  5 is 1, so assigned to rank 4
+   current rank of  6,14 is 3, so each assigned to rank 5
+so, after processing 3rd rightmost bit,
+B = [3, 1, 5, 5, 4, 0, 2]
+
+Finally, consider 4th rightmost bit LSB4
+2, 6, 5 => LSB4 = 0
+   use radix sort on the rank of these elements
+   current rank of 2 is 1, so assigned to rank 0
+   current rank of 5 is 4, so assigned to rank 1
+   current rank of 6 is 5, so assigned to rank 2
+12, 14, 9, 11 => LSB4 = 1
+   use radix sort on the rank of these elements
+   current rank of  9 is 0, so assigned to rank 3
+   current rank of 11 is 2, so assigned to rank 4
+   current rank of 12 is 3, so assigned to rank 5
+   current rank of 14 is 5, so assigned to rank 6
+so, after processing 3rd rightmost bit,
+B = [5, 0, 2, 6, 1, 3, 4]
