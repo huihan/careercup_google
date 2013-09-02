@@ -1,0 +1,40 @@
+
+http://www.careercup.com/question?id=14942777
+
+From the set of natural integer numbers 
+Let x = 1234 = {1, 2, 3, 4} 
+Let y = 2410 = {2, 4, 1, 0} 
+
+Write an algorithm to compute the rearrangement of x that is closest to y but still greater than y. Both x and y have the same number of digits. 
+
+So in the example above, the answer would be { 2, 4, 1, 3 } = 2413 which is greater than y = 2410 and closer than any other arrangements of x. 
+
+And whats the time complexity of this algorithm?
+
+this has some problem
+public static int[] getLowest(int[] A, int[] B){
+		if(A== null || B == null || A.length != B.length){
+			return null;
+		}
+		int length = A.length;
+		if(length < 2){
+			if (A[0] < B[0])
+				return null; // no solution
+			else return A;
+		}
+		// Assume A is sorted.
+		int i = 0; int j = 1; int k = 0;
+		while(i<length && j< length && k< length){
+			if(A[i] < B[k]){
+				swap(A, i, j);
+				j++;
+			}
+			else if(A[i] == B[k]){
+				i++; k++;j=i+1;
+			}
+			else{
+				break;
+			}				
+		}
+		return A;
+	}
