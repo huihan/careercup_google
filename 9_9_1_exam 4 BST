@@ -1,0 +1,60 @@
+http://www.careercup.com/question?id=9950235
+
+Give two binary search trees, print the numbers of both together in ascending order.
+
+
+
+public class Solution{
+  
+  public void mergeTree(Tree root1, Tree root2){
+    Stack<Tree> st1 = new Stack<Tree>();
+    Stack<Tree> st2 = new Stack<Tree>();
+    while(root1 != null){
+      st1.push(root1);
+      root1 = root1.left;
+    }
+    while(root2 != null){
+      st2.push(root2);
+      root2 = root2.left;
+    }
+    while(!st1.empty()&& !st2.empty()){
+      if(st1.peek().val <= st2.peek().val ){
+        printf(st1.peek().val);
+        Tree tem = st1.pop();
+        if(tem.right != null){
+          tem = tem.right;
+          while(tem != null){ 
+            st1.push(tem);
+            tem = tem.left;
+          }
+        }
+      }
+      else{
+        printf(st2.peek().val);
+        Tree tem = st2.pop();
+        if(tem.right != null){
+          tem = tem.right;
+          while(tem != null){ 
+            st2.push(tem);
+            tem = tem.left;
+          }
+        }
+      }
+    } 
+      print_stack(st2);
+      print_stack(st1);
+  }
+  public void print_stack(Stack<Tree> st){
+    while(!st.empty()){
+      printf(st.peek().val);
+      Tree tem = st1.pop();
+      if(tem.right != null){
+        tem = tem.right;
+        while(tem != null){ 
+          st.push(tem);
+          tem = tem.left;
+        }
+      }
+    }
+  }
+}
