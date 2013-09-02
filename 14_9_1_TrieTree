@@ -1,0 +1,63 @@
+http://www.careercup.com/question?id=9478119
+
+
+Given a binary matrix of N X N of integers , you need to return only unique rows of binary arrays 
+eg: 
+0 1 0 0 1 
+1 0 1 1 0 
+0 1 0 0 1 
+1 1 1 0 0 
+ans: 
+0 1 0 0 1 
+1 0 1 1 0 
+1 1 1 0 0
+
+public class  Solution{
+  public ArrayList<int[]> uniqueRows(int[][] matrix){
+    if(matrix == null) return null;
+    int row = matrix.length;
+    int col = matrix[0].length;
+    ArrayList<int[]> res = new ArrayList<int[]>();
+    Node root = new Node();
+    for(int i = 0 ; i < row ; i++)
+    {
+      if(root.searchAndInsert( matrix[i] , 0)){
+        res.add(matrix[i]);
+      }
+    }
+    return res;
+  }
+  
+  
+}
+
+public class Node{
+  Node left;
+  Node right;
+  public Node(){
+    left= null;
+    right = null;
+  }
+  boolean searchAndInsert(int[] arr , int index){
+    if(index == arr.length ) return true; 
+    switch(arr[index]){
+      case 0:
+        if(right == null){
+          right = new Node();
+          right.searchAndInsert(arr, index+1);
+          return true;
+        }
+        return right.searchAndInsert(arr, index+1);
+        break;
+      case 1:
+         if(left == null){
+          left = new Node();
+          left.searchAndInsert(arr, index+1);
+          return true;
+        }
+        return right.searchAndInsert(arr, index+1);
+        break;
+    }
+    return fasle;
+  }
+}
