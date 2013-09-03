@@ -1,0 +1,14 @@
+http://www.careercup.com/question?id=17693675
+
+How do you find the greatest 1000 elements in a list of a million elements? No other information given. What would be the runtime? Hint: You can do better than O(n log n). I didn't realize but it could be possible with Tree or Heaps.
+
+- Ana on April 23, 2013 in United States Report Duplicate | F
+
+
+http://www.careercup.com/question?id=3733382
+
+there was a party.there was a log register in which entry and exit time of all the guests was logged.you have to tell the time at which there was maximum guest in the party. 
+input will be the entry and exit time of all the n guests [1,4] [2,5] [9,12] [5,9] [5,12] 
+the output will be t=5 as there was maximum 3 guest were there namly guest(starting from 1) 2,4 and 5.
+
+- career.baghel on September 11, 2010 Report Duplicate | Flag 
