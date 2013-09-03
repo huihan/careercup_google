@@ -1,0 +1,78 @@
+http://www.careercup.com/question?id=7161152
+
+Write an 0(n) algorithm for detecting conflicts in appointments.
+
+
+public static ArrayList<Appointment> markCOnficts(ArrayList<Appointment> apntmnts)
+
+//your code here..for each appointment if it 
+//has a conflict you need to set hasConflict 
+//parm = true
+
+
+
+
+Public class Solution{
+
+  public ArrayList<Appointment> markCOnficts(ArrayList<Appointment> apps){
+    if(apps.size()<1) return null;
+    Node tst = new Node(apps.get(0));
+    for(int i = 1 ; i < apps.size() ; i++){
+      tst.add(apps.get(i));
+    }
+    ArrayList<Appointment> res = new ArrayList<Appointment>();
+    tst.dfs( res );
+    return res;
+  }
+}
+
+
+public class Appointment {
+long startTime;
+long endTime;
+boolean hasConflict;
+}
+
+public class Node{
+
+    Appointment val;
+    Appointment left;
+    Appointment midd;
+    Appointment right;
+    public Node(Appointment p){
+      val = p;
+      left= null;
+      midd = null;
+      right = null;
+    }
+    public void add(Appointment p){
+      if(p.startTime < val.startTime){
+        if(p.endTime <= val.startTime){
+          if(left == null){
+            left = new Node(p);
+          }
+          else left.add(p);
+          return;
+        } 
+      }
+      else if(p.startTime >= val.endTime){
+        if(right == null){
+            right = new Node(p);
+          }
+          else right.add(p);
+          return;
+      }
+      if(midd  == null){
+        midd = new Node(p);
+      }
+      else midd.add(p);
+      val.hasConflict= true;
+      midd.hasCOnfilict = true;
+    }
+    public void dfs(ArrayList<Appointment> res){
+      if(left!=null) left.dfs(res);
+      if(right!=null) right.dfs(res);
+      if(midd!=null) midd.dfs(res);
+      if(val.isConfilict) res.add(val);
+    }
+}
