@@ -1,0 +1,44 @@
+http://www.careercup.com/question?id=14691685
+Given an N x M matrix having only positive values, we have to nullify the matrix i.e make all entries 0. 
+We are given two operations 
+1) multiply each element of any one column at a time by 2. 
+2) Subtract 1 from all elements of any one row at a time 
+
+Find the minimum number of operations required to nullify the matrix. 
+Note: no range of input was given
+
+key to solve this problem: 
+i) do NOT use operation 2(O2) on any row that has "1" in it till all the member in that row is "1". 
+ii) use operation 1(O1) on any col that has "1" in it and then O2 to prevent case one from happening. 
+
+algorithm to solve it: 
+s1)search for the minimum value in row i, let it be a. Record all index where a occur; 
+s2)do O2 for (a-1) times to row i; 
+s3)check if any column has a value greater than "1" 
+true: 
+s4)do O1 for each column indexed in step 1(s1). go to s1 
+false: 
+s5)do O2 then move to next row(i++) 
+
+for example of a row: 
+s1: 4 17 11 
+s2: 1 14 8 
+s3->4: 2 14 8 
+s1~2:	1 13 7 
+s3->4: 2 13 7 
+s1~2:	1 12 6 
+s3->4: 2 12 6 
+. 
+. 
+. 
+s1~2:	1 7 1 
+s3->4: 2 7 2 
+s1~2:	1 6 1 
+s3->4: 2 6 2 
+. 
+. 
+. 
+s1~2:	1 2 1 
+s3->4: 2 2 2 
+s1~2:	1 1 1 
+s3->5: 0 0 0 
