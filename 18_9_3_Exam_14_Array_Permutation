@@ -1,0 +1,88 @@
+http://www.careercup.com/question?id=14581715
+
+Given an array of intergers. Write a program to print all 
+the permutations of the numbers in the array. The output 
+should be sorted in a non-increasing order. For example 
+for the array { 12, 4, 66, 8, 9}, the output should be: 
+
+9866412 
+
+9866124 
+
+9846612 
+
+.... 
+
+.... 
+
+1246689
+
+I think the sort comparator should like this and 
+it can compare "5566"with"5566557" or "5566554" 
+
+DP from"5566" "5566557"
+     to"5566" "557"
+
+{{{
+public class Solution{
+
+  public void printPermutation(ArrayList<String> strs){
+    Comparator<String> com = new Comparator<String>(){
+      @override
+      public int compare(String a , String b){
+        if(a.length()*b.length() ==0) return 0;
+        int key = a.charAt(0);
+        if(key > b.charAt(0)) return 1;
+        if(key < b.charAt(0)) return -1;
+        return compare_DP( a, b);
+      }
+      public int compare_DP(String a, String b){
+        if(a.length() < b.length()) {
+          String tem = a;
+          a = b;
+          b = a;
+        }
+        int lena = a.length();
+        int lenb = b.length();
+        for(int i = 0 ; i < lenb ; i++){
+          if(a.charAt(i) > b.charAt(i)) return 1;
+          if(a.charAt(i) < b.charAt(i)) return -1;
+        }
+        if(lena == lenb) return 0;
+        a = a.substring(lenb);
+        return compare_DP(a,b);
+      }
+    }
+    Collections.sort(strs, com); 
+    printPermutation_DP(strs , 0);
+  }
+  public void printPermutation_DP(ArrayList<String> strs , int index){
+    if(index == strs.size()){
+      for(String str : strs){
+        printf(str);
+      }
+      println("");
+      return ;
+    }
+    for(int j = index ; j < strs.size() ; j++){
+       String tem = strs.get(start);
+       strs.set(start,strs.get(j));
+       strs.set(j,tem);
+       printPermutation_DP(strs,index+1); 
+       reverse(strs,  j , strs.size()-1);
+    }
+  }
+  public void revers(ArrayList<String> strs , int p , int q){
+    for(int i = p , j = q ; i < j ;i++,j-- ){
+      String tem = strs.get(i);
+       strs.set(i,strs.get(j));
+       strs.set(j,tem);
+    }
+  }
+}
+
+}}}
+
+
+
+
