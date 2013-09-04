@@ -1,0 +1,29 @@
+
+http://www.careercup.com/question?id=11532811
+Given an array A[], find (i, j) such that A[i] < A[j] and (j - i) is maximum.
+{{{
+public class Solution{
+
+  public int find_maximum( int[] arr ){
+  
+    int len = arr.length,p=0, q = 1,res = 0;
+    if(len <= 1) return 0;
+    int[] minList = int[len] , maxList = int[len];
+    minList[0] = arr[0];
+    maxList[len-1] = arr[len-1];
+    for(int i = 1; i < len ; i++) 
+      minList[i] = Math.min(arr[i] , minList[i-1]); 
+    for(int i = len -2 ; i> 0 ; i--) 
+      maxList[i] = Math.max(arr[i] , maxList[i+1]); 
+    while(p < len && q< len){
+      if(maxList[q] > minLIst[p] ) 
+        q++; 
+      else 
+        p++; 
+      
+      res = math.max(q-p , res);
+    }
+    return res;
+  }
+}
+}}}
