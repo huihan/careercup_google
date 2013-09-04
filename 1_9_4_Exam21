@@ -1,0 +1,34 @@
+http://www.careercup.com/question?id=20308668
+
+Given a string pattern of 0s, 1s, and ?s (wildcards), generate all 0-1 strings that match this pattern. 
+e.g. 1?00?101 -> [10000101, 10001101, 11000101, 11001101]. 
+You can generate the strings in any order that suits you.
+
+{{{
+public class Solution{
+  ArrayList<String> res;
+  public ArrayList<String>Patten( String str ){
+    res = new ArrayList<String>();  
+    Patten_DP(str, new StringBuffer() , 0);
+    return res;
+  }
+  private void Patten_DP(String str,StringBuffer buf , int index){
+    if(index == str.length()) res.add(buf.toString());
+    switch(str.charAt(index)){
+      case '1':
+        buf.add('1');
+        break;
+      case '0':
+        buf.add('0');
+        break;
+      case '?':
+        String buf2 = new StringBuffer(buf);
+        buf.add('0');
+        buf2.add('1');
+        Patten_DP(str,buf , index+1);
+        Patten_DP(str,buf2 , index+1);
+        break;
+    }
+  }
+}
+}}}
