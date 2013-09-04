@@ -1,0 +1,50 @@
+http://www.careercup.com/question?id=14813758
+
+Given 2 arrays A,B, where x(A.length) < y(B.length), we want to 
+insert (y - x) 0's to A at various places such that A*B is minimum. For instance, if A = (1, -1) and 
+B = (1,2, 3, 4), then inserting two 0's in the middle of A such that A = (1, 0, 0, -1) would minimize 
+A*B. I think he was looking for a dynamic problem solution.
+{{{
+public class Solution{
+  int res;
+  public int[] Insert(int[] A, int[] B){
+    int alen = A.length;
+    int blen = B.length;
+    res = Integer.MAX_VALUE;
+    int znum = blen - alen;
+    int C = new int[blen];
+    solve(A,B,C,0,0,znum);
+    return res;
+  }
+  public void solve(int[] A,int[] B,int[] C, int index_a, int index_b ,int znum){
+    int alen = A.length;
+    int blen = B.length;
+    if(znum == 0 ){
+      for(int i = index_a ; i < alen ; i++)
+        C[i] = B[blen - alen + i];
+      res = Math.min(res , calc(A,C));
+      return;
+    }
+    if(blen-1 == index_b){
+      for(int i = index_a ; i < alen ; i++)
+        C[i] = 0;
+      res = Math.min(res , calc(A,C));
+      return;
+    }
+    
+    C[index_a] = 0;
+    solve(A,B,C,index_a+1 , index_b , znum-1);
+    C[index_a] = B[index_b];
+    solve(A,B,C,index_a_1 , index_b-1 , znum);
+    
+  }
+  public int calc(int [] A , int[] C){
+    int alen = A.length;
+    int res = 0;
+    for(int i = 0 ; i < alen ; i++){
+      res+=A[i]*C[i];
+    }
+    return res;
+  }
+}
+}}}
